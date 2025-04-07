@@ -3,11 +3,12 @@ import re
 import sys
 import subprocess
 from pathlib import Path
+from security import safe_command
 
 
 def run_command(command):
     try:
-        subprocess.run(command, check=True, shell=True)
+        safe_command.run(subprocess.run, command, check=True, shell=True)
     except subprocess.CalledProcessError as e:
         print(f"Error executing command: {command}")
         print(f"Error: {e}")
